@@ -19,10 +19,8 @@ int main(int argc, char **argv) {
     printf("%lu\n", statbuf.st_size);
     if (S_ISDIR(statbuf.st_mode)) {
         printf("directory\n");
-        return -1;
     } else if (S_ISREG(statbuf.st_mode)) {
         printf("reguler file\n");
-        return -1;
     } else {
         printf("???");
     }
