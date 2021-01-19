@@ -23,6 +23,7 @@ int read_memo(void) {
     int fd;
     char buf[1024];
 
+    memset(buf, 0, sizeof(buf));
     fd = open("note", O_RDONLY, 0644);
     if (fd == -1) {
         perror("read_memo open error");
@@ -33,18 +34,15 @@ int read_memo(void) {
         perror("read_memo read error");
         return -1;
     }
-    printf("%s \n", buf);
+    printf("%s", buf);
 
     return 0;
 }
 
 int main(int argc, char **argv) {
-    
-    if (argc == 0) {
-        if (read_memo()) {
-            printf("read_memo() fail");
-            return -1;
-        }
+    if (argc <= 1) {
+        read_memo(); 
+        return 0;
     }
     if (write_memo(argv[1])) {
         printf("write_memo() fail");
